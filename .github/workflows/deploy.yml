@@ -21,5 +21,10 @@ jobs:
             cd /var/www/poker-hand-note
             git pull origin main
             npm install --production
+            rm -rf .next    # 清除舊的構建文件
             npm run build
+            if [ ! -d ".next" ]; then
+              echo "Build failed: .next directory not found"
+              exit 1
+            fi
             pm2 restart poker-hand-note
