@@ -87,14 +87,14 @@ export default function Calculator() {
         <div className="p-4 border-t">
           <Script
             async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=your-client-id"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8916400239778344"
             crossOrigin="anonymous"
           />
           <ins
             className="adsbygoogle"
             style={{ display: 'block' }}
-            data-ad-client="your-client-id"
-            data-ad-slot="your-ad-slot"
+            data-ad-client="ca-pub-8916400239778344"
+            data-ad-slot="6387819148"
             data-ad-format="auto"
             data-full-width-responsive="true"
           />
