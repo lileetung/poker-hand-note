@@ -1,0 +1,25 @@
+name: Deploy to Linode
+
+on:
+  push:
+    branches: [ main ]  # 當 main 分支有推送時觸發
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Linode
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/poker-hand-note
+            git pull origin main
+            npm install --production
+            npm run build
+            pm2 restart next
