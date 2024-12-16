@@ -1,16 +1,13 @@
 name: Deploy to Linode
-
 on:
   push:
-    branches: [ main ]  # 當 main 分支有推送時觸發
-
+    branches: [ main ]
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Deploy to Linode
         uses: appleboy/ssh-action@master
         with:
@@ -19,12 +16,16 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/poker-hand-note
-            git pull origin main
-            npm install --production
-            rm -rf .next    # 清除舊的構建文件
-            npm run build
-            if [ ! -d ".next" ]; then
-              echo "Build failed: .next directory not found"
-              exit 1
-            fi
-            pm2 restart poker-hand-note
+            echo "Pulling latest changes..."
+            git pull origin main || exit 1
+            
+            echo "Installing dependencies..."
+            npm install || exit 1
+            
+            echo "Building application..."
+            npm run build || exit 1
+            
+            echo "Restarting PM2..."
+            pm2 restart poker-hand-note || exit 1
+            
+            echo "Deployment completed successfully"
