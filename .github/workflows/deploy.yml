@@ -20,9 +20,6 @@ jobs:
           script: |
             cd /var/www/poker-hand-note
             git pull origin main
-            npm clean-cache --force
-            rm -rf node_modules
             npm install --production
-            rm -rf .next
             npm run build
             pm2 restart poker-hand-note
