@@ -27,7 +27,7 @@ export default function Calculator() {
       const result = eval(equation + display)
       setDisplay(result.toString())
       setEquation('')
-    } catch (_error) {
+    } catch (_) {
       setDisplay('Error')
       setEquation('')
     }
