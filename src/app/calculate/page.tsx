@@ -27,7 +27,7 @@ export default function Calculator() {
       const result = eval(equation + display)
       setDisplay(result.toString())
       setEquation('')
-    } catch (_) {
+    } catch {  // 移除參數完全
       setDisplay('Error')
       setEquation('')
     }
