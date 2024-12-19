@@ -15,9 +15,15 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/poker-hand-note
-            echo "Stashing local changes..."
-            git stash || exit 1
+            # 創建目錄（如果不存在）
+            mkdir -p /var/www/poker-notebook
+            
+            # 如果目錄是空的，進行 git clone
+            if [ -z "$(ls -A /var/www/poker-notebook)" ]; then
+              git clone https://github.com/lileetung/poker-notebook.git /var/www/poker-notebook
+            fi
+            
+            cd /var/www/poker-notebook
             
             echo "Fetching latest changes..."
             git fetch origin main || exit 1
@@ -25,16 +31,14 @@ jobs:
             echo "Rebasing with main branch..."
             git rebase origin/main || exit 1
             
-            echo "Applying stashed changes if any..."
-            git stash pop || true
-            
             echo "Installing dependencies..."
             npm install || exit 1
             
             echo "Building application..."
             npm run build || exit 1
             
-            echo "Restarting PM2..."
-            pm2 restart poker-hand-note || exit 1
+            # 如果 PM2 進程不存在，創建它；如果存在，重啟它
+            pm2 describe poker-notebook > /dev/null || pm2 start npm --name "poker-notebook" -- start
+            pm2 restart poker-notebook || exit 1
             
             echo "Deployment completed successfully"
