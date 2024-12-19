@@ -201,7 +201,7 @@ export default function HandHistory() {
                 <h2 className="text-xl font-bold mb-4 text-emerald-400">{stage.name}</h2>
                 <button 
                   onClick={() => addAction(stage.name)}
-                  className="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition-colors"
+                  className="bg-emerald-600 text-white px-4 h-10 rounded-md hover:bg-emerald-700 transition-colors"
                 >
                   + Add Action
                 </button>
@@ -211,7 +211,7 @@ export default function HandHistory() {
                       <select
                         value={action.position}
                         onChange={(e) => updateAction(stageIndex, actionIndex, 'position', e.target.value)}
-                        className="bg-[#242424] border border-gray-700 rounded-md p-2 text-white w-24"
+                        className="bg-[#242424] border border-gray-700 rounded-md px-2 h-10 text-white w-24"
                       >
                         {POSITIONS.map(pos => (
                           <option key={pos.value} value={pos.value}>{pos.label}</option>
@@ -220,7 +220,7 @@ export default function HandHistory() {
                       <select
                         value={action.action}
                         onChange={(e) => updateAction(stageIndex, actionIndex, 'action', e.target.value)}
-                        className="bg-[#242424] border border-gray-700 rounded-md p-2 text-white w-24"
+                        className="bg-[#242424] border border-gray-700 rounded-md px-2 h-10 text-white w-24"
                       >
                         {ACTIONS.map(act => (
                           <option key={act.value} value={act.value}>{act.label}</option>
@@ -231,11 +231,11 @@ export default function HandHistory() {
                         placeholder="金額"
                         value={action.amount}
                         onChange={(e) => updateAction(stageIndex, actionIndex, 'amount', e.target.value)}
-                        className="bg-[#242424] border border-gray-700 rounded-md p-2 text-white w-20"
+                        className="bg-[#242424] border border-gray-700 rounded-md px-2 h-10 text-white w-20"
                       />
                       <button
                         onClick={() => deleteAction(stageIndex, actionIndex)}
-                        className="bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700 flex-shrink-0"
+                        className="bg-red-600 text-white px-3 h-10 rounded-md hover:bg-red-700 flex-shrink-0"
                       >
                         X
                       </button>
