@@ -1,4 +1,5 @@
 import Logo from "@/components/Logo";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,9 +12,9 @@ export default function Home() {
             <h1 className="text-xl font-medium">撲克筆記本</h1>
           </div>
           <div className="flex gap-6">
-            <a href="/" className="hover:text-emerald-400 transition-colors">
+            <Link href="/" className="hover:text-emerald-400 transition-colors">
               會員
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
