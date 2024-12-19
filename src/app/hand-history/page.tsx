@@ -200,8 +200,9 @@ export default function HandHistory() {
               <section key={stage.name} className="bg-[#1A1A1A] rounded-lg p-6">
                 <h2 className="text-xl font-bold mb-4 text-emerald-400">{stage.name}</h2>
                 <button 
+                  type="button"
                   onClick={() => addAction(stage.name)}
-                  className="bg-emerald-600 text-white px-4 h-10 rounded-md hover:bg-emerald-700 transition-colors"
+                  className="bg-emerald-600 text-white px-4 h-10 rounded-md hover:bg-emerald-700 transition-colors cursor-pointer"
                 >
                   + Add Action
                 </button>
@@ -234,8 +235,9 @@ export default function HandHistory() {
                         className="bg-[#242424] border border-gray-700 rounded-md px-2 h-10 text-white w-20"
                       />
                       <button
+                        type="button"
                         onClick={() => deleteAction(stageIndex, actionIndex)}
-                        className="bg-red-600 text-white px-3 h-10 rounded-md hover:bg-red-700 flex-shrink-0"
+                        className="bg-red-600 text-white px-3 h-10 rounded-md hover:bg-red-700 flex-shrink-0 cursor-pointer"
                       >
                         X
                       </button>
@@ -250,8 +252,9 @@ export default function HandHistory() {
           <section className="bg-[#1A1A1A] rounded-lg p-6 mt-6">
             <h2 className="text-xl font-bold mb-4 text-emerald-400">Opponents</h2>
             <button 
+              type="button"
               onClick={addOpponent}
-              className="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition-colors mb-4"
+              className="bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition-colors mb-4 cursor-pointer"
             >
               + Add Opponent
             </button>
