@@ -16,8 +16,17 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/poker-hand-note
-            echo "Pulling latest changes..."
-            git pull origin main || exit 1
+            echo "Stashing local changes..."
+            git stash || exit 1
+            
+            echo "Fetching latest changes..."
+            git fetch origin main || exit 1
+            
+            echo "Rebasing with main branch..."
+            git rebase origin/main || exit 1
+            
+            echo "Applying stashed changes if any..."
+            git stash pop || true
             
             echo "Installing dependencies..."
             npm install || exit 1
